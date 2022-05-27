@@ -6,25 +6,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com">
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com"> -->
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>Weather</title>
 </head>
 <body>
   <div class="jumbotron header-margin divider bg-transparent">
-    <h1 class="display-4 bg-transparent">Hello, world!</h1>
-    <p class="header-margin bg-transparent">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+    <h1 class="display-4 bg-transparent">3rd party API weather app.</h1>
+    <p class="header-margin bg-transparent">Enter which city you would like the weather for below</p>
   </div>
    
   <nav class="navbar navbar-light bg-light">
-    <a class="navbar-brand">Navbar</a>
+    <a class="navbar-brand">Weather Search</a>
     <form class="form-inline col-4 bg-light">
-      <input class="form-control mr-sm-2 col-10" type="search" placeholder="Enter City" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0 bg-light" type="button" data-toggle="modal" data-target="#staticBackdrop">Search</button>
+      <input class="form-control mr-sm-2 col-10" type="search" placeholder="Enter City" aria-label="Search" id="cityInput">
+      <button class="btn btn-outline-success my-2 my-sm-0 bg-light" type="button" data-toggle="modal" data-target="#staticBackdrop" id="searchBtn">Search</button>
     </form>
   </nav>
 
+<section class="content-container col-10 justify-content-center">
+  <div class="current-weather">
+
+  </div>
+  <div class="current-city">
+
+  </div>
+
+  <div class="forcast-hourly">
+
+  </div>
+
+  <div class="forcast-5day">
+
+  </div>
+  <div class="news-container">
+
+  </div>
+
   
+</section>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>

@@ -1,9 +1,10 @@
 * {
     background-color: #99C4C8;
+    
 }
 
 .divider {
-    background-image: linear-gradient(to right, #14c38fb1,#14c38f11);
+    background-image: linear-gradient(to right, #14c38fea,#14c38f11);
     width: 100%;
 }
 
@@ -14,3 +15,83 @@
 .header-margin{
     margin-bottom: 0;
 }
+body {
+    background-color: #99C4C8;
+    height: 1000px;
+    background-image: url("../images/clear-sunset.jpg");
+    background-position: bottom right;
+    background-repeat: no-repeat;
+    background-size: 100% 75%;
+}
+
+
+.content-container {
+    display: flex;
+    position: relative;
+    left: 10%;
+    top: 100px;
+    border: #154296 7px inset;
+    border-radius: 10px;
+    background-color: rgba(178, 174, 133, 0.92);
+    height: 500px;
+    box-shadow: 10px 5px 5px #5665668f;
+}
+
+.current-weather {
+    display: flex;
+    position: relative;
+    left: 2%;
+    top: 5%;
+    border-left: #154296 5px inset;
+    border-bottom: #154296 5px inset;
+    height: 240px;
+    width: 470px;
+    background-color: #99c4c8ea;
+    box-shadow: -5px 1px 5px #f5c68dea;
+}
+
+.current-city {
+    display: flex;
+    position: relative;
+    left: 75%;
+    top: 5%;
+    border-right: #154296 5px inset;
+    border-bottom: #154296 5px inset;
+    height: 225px;
+    width: 470px;
+    background-color: #99c4c8ea;
+    box-shadow: 5px 1px 5px #f5c68dea;
+}
+
+.forcast-hourly {
+    display: block;
+    position: relative;
+    top: 5%;
+    right: -100px;
+
+
+
+    height: 200px;
+    width: 100%;
+    background-color: #99c4c8ea;
+    border: 5px inset #154296;
+    border-radius: 10px;
+}
+
+.forcast-5day {
+    display: flex;
+    position: relative;
+    top: 60%;
+    left: 0%;
+    height: 180px;
+    width: 100%;
+    background-color: #99c4c8ea;
+    border-radius: 10px;
+    border: 5px inset #154296;
+}
+
+.news-container {
+    
+}
+
+
