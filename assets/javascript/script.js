@@ -1,42 +1,43 @@
-let cityInput = document.querySelector("#cityInput");
-let searchBtn = document.getElementById("searchBtn");
+let cityInput = "Toronto"
+let cityLat = 43.6534817;
+let cityLong = -79.3839347;
+let lang = "en";
+let apiKey = "a772a40f5da703f3736db6d33655ff2f"
 
-
-// let lat = geoData[].latitude
-// let long = geoData[].longitude
-// let lang = "english"
-
-//fetches the Geo API info to get city coordinates
+// fetches the Geo API info to get city coordinates
 geoApi = () => {
-    let getGeo = `http://api.openweathermap.org/geo/1.0/direct?q=${cityInput}&limit=5&appid=05ebc66a4389e8c9833d3846169e15ce`
-
+    let getGeo = `http://api.openweathermap.org/geo/1.0/direct?q=${cityInput}&limit=5&appid=${apiKey}`
+    console.log(cityInput)
     fetch(getGeo)
         .then(function (response) {
             return response.json();
         })
         .then(function (geoData) {
             console.log(geoData)
-                        
+            cityLong = geoData[0].lon
+            cityLat = geoData[0].lat
+            getWeather();           
         })
 
 };
 
-// getWeather = () => {
-//     let selectedCity = `api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${long}&units=metric&lang=${lang}&exclude=alerts,minutely&appid=05ebc66a4389e8c9833d3846169e15ce`
+getWeather = () => {
+    let selectedCity = `api.openweathermap.org/data/2.5/onecall?lat=${cityLat}&lon=${cityLong}&units=metric&lang=${lang}&exclude=alerts,minutely&appid=${apiKey}`
 
-//     fetch(getCity)
-//         .then(function (cityResponse) {
-//             return cityResponse.json();
-//         })
-//         .then(function (cityData) {
-//             console.log(cityData)
-//         })
-// }
+    fetch(selectedCity)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (cityData) {
+            console.log(cityData)
+            localStorage.setItem("cityName", JSON.stringify(cityData))
+        })
+}
 
 
-
-
+// geoApi();
+getWeather();
 
 //adds event listener to the search button
-searchBtn.addEventListener("click", geoApi);
+// searchBtn.addEventListener("click", geoApi);
 
