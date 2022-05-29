@@ -1,4 +1,4 @@
-let cityInput = 
+let cityInput;
 let cityLat = 43.6534817;
 let cityLong = -79.3839347;
 let lang = "en";
@@ -31,13 +31,11 @@ geoApi = () => {
         })
         .then(function (geoData) {
             localStorage.setItem("geo", JSON.stringify(geoData))
-            currentCity = geoData[0].name
             cityLong = geoData[0].lon
             cityLat = geoData[0].lat
             currentName = geoData[0].name
             currentState = geoData[0].state
             currentCountry = geoData[0].country
-            console.log(currentName);
             getWeather();          
         })
 
@@ -97,8 +95,10 @@ searchBtn.addEventListener("click", function(){
 });
 searchBar.addEventListener("keypress", function(y) {
     if(y.key === 'Enter') {
-        cityInput = document.querySelector("#seachBar").value;
+        cityInput = document.querySelector("#seachBar");
         geoApi();
     }
 });
+
+
 
