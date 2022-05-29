@@ -7,7 +7,7 @@ let currentName;
 let currentState;
 let currentCountry;
 
-let currentDayofWk = moment().isoWeekday();
+
 let now = moment().format('ddd MMM D YYYY');
 let currentCityEl = document.getElementById('currentName');
 let currentStateEl = document.getElementById('currentState');
@@ -80,18 +80,21 @@ load5Day();
 
 load5Day = () => {
     let fiveDayData = JSON.parse(localStorage.getItem("cityName"))
+    let currentDayofWk = moment().isoWeekday();
     let i = 1
     let daySelect = currentDayofWk + i
    if (daySelect === 8) {
        daySelect = 1;
+       i = 0;
    };
-   for (x = 0; x < 6 ; x++) {
-    document.getElementById(`${daySelect}date`).textContent = moment().isoWeekday(daySelect);
-   let icon = fiveDayData.daily[x].weather[0].icon;
-   document.getElementById(`${daySelect}weather`).innerHTML = `<img src=https://openweathermap.org/img/wn/${icon}@4x.png>`;
-   document.getElementById(`${daySelect}temp`).textContent = `Temp: ${fiveDayData.daily[x].temp[0]} C`;
+   for (x = 0; x < 5 ; x++) {
+    document.getElementById(`${daySelect}date`).textContent = moment().isoWeekday(daySelect).format('ddd MMM D YYYY');
+    document.getElementById(`${daySelect}temp`).textContent = `Temp: ${fiveDayData.daily[x].temp.day} C`;
    document.getElementById(`${daySelect}humid`).textContent = `Humidity: ${fiveDayData.daily[x].humidity} %`;
    document.getElementById(`${daySelect}windSpd`).textContent = `Wind: ${fiveDayData.daily[x].wind_speed}KM/h`;
+   let icon = fiveDayData.daily[x].weather[0].icon;
+   document.getElementById(`${daySelect}weather`).innerHTML = `<img src=https://openweathermap.org/img/wn/${icon}@4x.png>`;
+   
    i++
    }
 }
