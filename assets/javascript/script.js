@@ -1,9 +1,9 @@
-let cityInput = "Toronto"
+let cityInput = 
 let cityLat = 43.6534817;
 let cityLong = -79.3839347;
 let lang = "en";
 let apiKey = "a772a40f5da703f3736db6d33655ff2f"
-let currentName;
+let currentCity;
 let currentState;
 let currentCountry;
 
@@ -31,7 +31,7 @@ geoApi = () => {
         })
         .then(function (geoData) {
             localStorage.setItem("geo", JSON.stringify(geoData))
-            currentCity = geoData
+            currentCity = geoData[0].name
             cityLong = geoData[0].lon
             cityLat = geoData[0].lat
             currentName = geoData[0].name
@@ -80,29 +80,25 @@ load5Day();
 
 load5Day = () => {
     let fiveDayData = JSON.parse(localStorage.getItem("cityName"))
-    let currentDayofWk = moment().isoWeekday();
-    let i = 1
-    let daySelect = currentDayofWk + i
-   if (daySelect === 8) {
-       daySelect = 1;
-       i = 0;
-   };
    for (x = 0; x < 5 ; x++) {
-    document.getElementById(`${daySelect}date`).textContent = moment().isoWeekday(daySelect).format('ddd MMM D YYYY');
-    document.getElementById(`${daySelect}temp`).textContent = `Temp: ${fiveDayData.daily[x].temp.day} C`;
-   document.getElementById(`${daySelect}humid`).textContent = `Humidity: ${fiveDayData.daily[x].humidity} %`;
-   document.getElementById(`${daySelect}windSpd`).textContent = `Wind: ${fiveDayData.daily[x].wind_speed}KM/h`;
+    document.getElementById(`${x}date`).textContent = moment().add(`${x}`, "days").format('ddd MMM D YYYY');
+    document.getElementById(`${x}temp`).textContent = `Temp: ${fiveDayData.daily[x].temp.day} C`;
+   document.getElementById(`${x}humid`).textContent = `Humidity: ${fiveDayData.daily[x].humidity} %`;
+   document.getElementById(`${x}windSpd`).textContent = `Wind: ${fiveDayData.daily[x].wind_speed}KM/h`;
    let icon = fiveDayData.daily[x].weather[0].icon;
-   document.getElementById(`${daySelect}weather`).innerHTML = `<img src=https://openweathermap.org/img/wn/${icon}@4x.png>`;
-   
-   i++
+   document.getElementById(`${x}weather`).innerHTML = `<img src=https://openweathermap.org/img/wn/${icon}@4x.png>`;
    }
 }
 
-geoApi();
-// getWeather();
-
-
 //adds event listener to the search button
-// searchBtn.addEventListener("click", geoApi);
+searchBtn.addEventListener("click", function(){
+    cityInput = document.querySelector("#searchBar").value;
+    geoApi();
+});
+searchBar.addEventListener("keypress", function(y) {
+    if(y.key === 'Enter') {
+        cityInput = document.querySelector("#seachBar").value;
+        geoApi();
+    }
+});
 
