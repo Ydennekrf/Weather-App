@@ -5,7 +5,7 @@ let lang = "en";
 let apiKey = "a772a40f5da703f3736db6d33655ff2f"
 let currentName;
 let currentState;
-let currentCountry; 
+let currentCountry;
 
 let currentDayofWk = moment().isoWeekday();
 let now = moment().format('ddd MMM D YYYY');
@@ -17,11 +17,7 @@ let currentTempEl = document.getElementById('current-temp');
 let currentConEl = document.getElementById('current-con');
 let currentWindEl = document.getElementById('current-wind');
 let currentUVEl = document.getElementById('current-UV');
-let dayDateEl = document.getElementById(`${daySelect}date`);
-let dayTempEl = document.getElementById(`${daySelect}temp`);
-let dayWeather = document.getElementById(`${daySelect}temp`);
-let dayHumid = document.getElementById(`${daySelect}humid`);
-let dayWindSpd = document.getElementById(`${daySelect}windSpd`);
+
 
 
 
@@ -79,20 +75,25 @@ loadCurrentWeather = () => {
     };
 load5Day();
 };
-loadDate = () => {
-    let dateHelp = `${daySelect}date`;
-    
-}
+
 
 
 load5Day = () => {
-    let daySelect = currentDayofWk + 1
-    loadDate(daySelect);
-    loadTemp(daySelect);
-    loadWeather(daySelect);
-    loadHumid(daySelect);
-    loadWind(daySelect);
-
+    let fiveDayData = JSON.parse(localStorage.getItem("cityName"))
+    let i = 1
+    let daySelect = currentDayofWk + i
+   if (daySelect === 8) {
+       daySelect = 1;
+   };
+   for (x = 0; x < 6 ; x++) {
+    document.getElementById(`${daySelect}date`).textContent = moment().isoWeekday(daySelect);
+   let icon = fiveDayData.daily[x].weather[0].icon;
+   document.getElementById(`${daySelect}weather`).innerHTML = `<img src=https://openweathermap.org/img/wn/${icon}@4x.png>`;
+   document.getElementById(`${daySelect}temp`).textContent = `Temp: ${fiveDayData.daily[x].temp[0]} C`;
+   document.getElementById(`${daySelect}humid`).textContent = `Humidity: ${fiveDayData.daily[x].humidity} %`;
+   document.getElementById(`${daySelect}windSpd`).textContent = `Wind: ${fiveDayData.daily[x].wind_speed}KM/h`;
+   i++
+   }
 }
 
 geoApi();
