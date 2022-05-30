@@ -15,8 +15,13 @@
     <h1 class="display-4 bg-transparent">3rd party API weather app.</h1>
     <p class="header-margin bg-transparent">Enter which city you would like the weather for below</p>
   </div>
-  <input type="search" id="searchBar" class="searchBar">
-  <button id="searchBtn" class="searchBtn">Search</button>
+  <form id="search-form">
+  <input type="text" id="searchBar" name="searchBar"class="searchBar form-input w-30">
+  <button class="btn btn-info" id="searchBar">Search</button>
+  </form>
+
+  <ul id="city-history"></ul>
+
    <section id="selectedCity">
      <section id="currentName"></section>
      <section id="currentState"></section>

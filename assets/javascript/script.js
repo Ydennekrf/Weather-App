@@ -1,11 +1,12 @@
-let cityInput;
-let cityLat = 43.6534817;
-let cityLong = -79.3839347;
+let cityInput ;
+let cityLat ;
+let cityLong ;
 let lang = "en";
 let apiKey = "a772a40f5da703f3736db6d33655ff2f"
 let currentCity;
 let currentState;
 let currentCountry;
+let cityName = [];
 
 
 let now = moment().format('ddd MMM D YYYY');
@@ -17,6 +18,8 @@ let currentTempEl = document.getElementById('current-temp');
 let currentConEl = document.getElementById('current-con');
 let currentWindEl = document.getElementById('current-wind');
 let currentUVEl = document.getElementById('current-UV');
+let searchBarEl = document.getElementById('searchBar');
+let historyEl = document.getElementById('city-history');
 
 
 
@@ -86,19 +89,27 @@ load5Day = () => {
    let icon = fiveDayData.daily[x].weather[0].icon;
    document.getElementById(`${x}weather`).innerHTML = `<img src=https://openweathermap.org/img/wn/${icon}@4x.png>`;
    }
+};
+
+printHistory = () => {
+    let cityHistory = JSON.parse(localStorage.getItem("cityName"));
+    historyEl.append(`<li class="his-city"> ${cityHistory} </li>`);
+
 }
 
 //adds event listener to the search button
-searchBtn.addEventListener("click", function(){
-    cityInput = document.querySelector("#searchBar").value;
+
+searchBarEl.addEventListener('submit' , function() {
+    console.log("fuck");
+    cityInput = $('input[name="searchBar"]').val();
+    console.log(cityInput);
+    localStorage.setItem("cityName" , JSON.stringify(cityInput));
+    // $('input[name="searchBar"]').val('');
+    printHistory();
     geoApi();
 });
-searchBar.addEventListener("keypress", function(y) {
-    if(y.key === 'Enter') {
-        cityInput = document.querySelector("#seachBar");
-        geoApi();
-    }
-});
+
+
 
 
 
