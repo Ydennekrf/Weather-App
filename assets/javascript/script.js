@@ -1,4 +1,4 @@
-let cityInput = "toronto";
+let cityInput;
 let cityLat ;
 let cityLong ;
 let lang = "en";
@@ -52,12 +52,12 @@ getWeather = () => {
             return response.json();
         })
         .then(function (cityData) {
-            localStorage.setItem("cityName", JSON.stringify(cityData))
+            localStorage.setItem("cityData", JSON.stringify(cityData))
             loadCurrentWeather();
         })
 }
 loadCurrentWeather = () => {
-    let currentData = JSON.parse(localStorage.getItem("cityName"));
+    let currentData = JSON.parse(localStorage.getItem("cityData"));
     currentCityEl.textContent = currentName;
     currentStateEl.textContent = currentState;
     currentCountryEl.textContent = currentCountry;
@@ -80,7 +80,7 @@ load5Day();
 
 
 load5Day = () => {
-    let fiveDayData = JSON.parse(localStorage.getItem("cityName"))
+    let fiveDayData = JSON.parse(localStorage.getItem("cityData"))
    for (x = 0; x < 5 ; x++) {
     document.getElementById(`${x}date`).textContent = moment().add(`${x}`, "days").format('ddd MMM D YYYY');
     document.getElementById(`${x}temp`).textContent = `Temp: ${Math.floor(fiveDayData.daily[x].temp.day)} C`;
@@ -93,22 +93,37 @@ load5Day = () => {
 
 printHistory = () => {
     let cityHistory = JSON.parse(localStorage.getItem("cityName"));
-    historyEl.append(`<li class="his-city"> ${cityHistory} </li>`);
+    let liEl = document.createElement('li');
+    let historyBtn = document.createElement('button');
+    historyBtn.textContent = cityHistory;
+    historyEl.appendChild(liEl);
+    liEl.appendChild(historyBtn);
+    historyBtn.classList.add('his-city');
 
 }
 
 //adds event listener to the search button
 
-// searchBarEl.addEventListener('submit' , function() {
-//     console.log("fuck");
-//     cityInput = $('input[name="searchBar"]').val();
-//     console.log(cityInput);
-//     localStorage.setItem("cityName" , JSON.stringify(cityInput));
-//     // $('input[name="searchBar"]').val('');
-//     printHistory();
-//     geoApi();
-// });
-geoApi();
+searchBarEl.addEventListener('click' , function(event) {
+    event.preventDefault();
+    console.log("hello");
+    cityInput = $('input[name="searchBar"]').val();
+    console.log(cityInput);
+    localStorage.setItem("cityName" , JSON.stringify(cityInput));
+    $('input[name="searchBar"]').val('');
+    printHistory();
+    geoApi(cityInput);
+});
+historyEl.addEventListener('click', function(event) {
+    event.preventDefault();
+    let element = event.target;
+    console.log(element)
+    console.log("helloWorld");
+    cityInput = element.value;
+    console.log(cityInput);
+})
+
+
 
 
 
