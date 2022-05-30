@@ -1,4 +1,4 @@
-let cityInput ;
+let cityInput = "toronto";
 let cityLat ;
 let cityLong ;
 let lang = "en";
@@ -6,7 +6,7 @@ let apiKey = "a772a40f5da703f3736db6d33655ff2f"
 let currentCity;
 let currentState;
 let currentCountry;
-let cityName = [];
+
 
 
 let now = moment().format('ddd MMM D YYYY');
@@ -62,7 +62,7 @@ loadCurrentWeather = () => {
     currentStateEl.textContent = currentState;
     currentCountryEl.textContent = currentCountry;
     currentDateEl.textContent = now;
-    currentTempEl.textContent = `Temp: ${currentData.current.temp} C'`;
+    currentTempEl.textContent = `Temp: ${Math.floor(currentData.current.temp)} C`;
     let icon = currentData.current.weather[0].icon
     currentConEl.innerHTML = `<img src=https://openweathermap.org/img/wn/${icon}@4x.png>`;
     currentWindEl.textContent = `Wind Speed: ${currentData.current.wind_speed} KM/H`;
@@ -83,7 +83,7 @@ load5Day = () => {
     let fiveDayData = JSON.parse(localStorage.getItem("cityName"))
    for (x = 0; x < 5 ; x++) {
     document.getElementById(`${x}date`).textContent = moment().add(`${x}`, "days").format('ddd MMM D YYYY');
-    document.getElementById(`${x}temp`).textContent = `Temp: ${fiveDayData.daily[x].temp.day} C`;
+    document.getElementById(`${x}temp`).textContent = `Temp: ${Math.floor(fiveDayData.daily[x].temp.day)} C`;
    document.getElementById(`${x}humid`).textContent = `Humidity: ${fiveDayData.daily[x].humidity} %`;
    document.getElementById(`${x}windSpd`).textContent = `Wind: ${fiveDayData.daily[x].wind_speed}KM/h`;
    let icon = fiveDayData.daily[x].weather[0].icon;
@@ -99,15 +99,16 @@ printHistory = () => {
 
 //adds event listener to the search button
 
-searchBarEl.addEventListener('submit' , function() {
-    console.log("fuck");
-    cityInput = $('input[name="searchBar"]').val();
-    console.log(cityInput);
-    localStorage.setItem("cityName" , JSON.stringify(cityInput));
-    // $('input[name="searchBar"]').val('');
-    printHistory();
-    geoApi();
-});
+// searchBarEl.addEventListener('submit' , function() {
+//     console.log("fuck");
+//     cityInput = $('input[name="searchBar"]').val();
+//     console.log(cityInput);
+//     localStorage.setItem("cityName" , JSON.stringify(cityInput));
+//     // $('input[name="searchBar"]').val('');
+//     printHistory();
+//     geoApi();
+// });
+geoApi();
 
 
 
