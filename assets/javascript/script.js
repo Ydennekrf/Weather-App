@@ -116,11 +116,9 @@ searchBarEl.addEventListener('click' , function(event) {
 });
 historyEl.addEventListener('click', function(event) {
     event.preventDefault();
-    let element = event.target;
-    console.log(element)
-    console.log("helloWorld");
-    cityInput = element.value;
+    cityInput = event.target.value;
     console.log(cityInput);
+    // geoApi(cityInput);
 })
 
 
