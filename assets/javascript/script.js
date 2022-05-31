@@ -44,7 +44,13 @@ geoApi = () => {
 
 };
 init = () => {
-
+    let loadUp = JSON.parse(localStorage.getItem("cityName"));
+    for (let i = 0; i < loadUp.length; i++) {
+        let cityHistory = [];
+        cityHistory = document.createElement('li');
+        cityHistory.textContent = loadUp[i];
+        historyBtn.appendChild(cityHistory);
+    }
 }
 
 getWeather = () => {
@@ -95,16 +101,13 @@ load5Day = () => {
 };
 
 printHistory = (historyArr) => {
-    console.log(historyArr)
+    historyBtn.innerHTML = '';
     for (let i = 0; i < historyArr.length; i++) {
         let cityHistory = [];
         cityHistory = document.createElement('li');
         cityHistory.textContent = historyArr[i];
         historyBtn.appendChild(cityHistory);
-        console.log(i);
-        console.log(cityHistory);
     }
-
 }
 
 //adds event listener to the search button
@@ -121,10 +124,12 @@ searchBarEl.addEventListener('click' , function(event) {
 
 historyBtn.addEventListener('click', function(event) {
     event.preventDefault();
-    cityInput = event.target;
-    console.log(event.target);
+    cityInput = event.target.textContent;
+    if (!historyArr.includes(cityInput)) {
     historyArr.push(cityInput);
     localStorage.setItem("cityName", JSON.stringify(historyArr));
+};
+    $('input[name="searchBar"]').val('');
     printHistory(historyArr);
     geoApi(cityInput);
 });
