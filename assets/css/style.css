@@ -15,12 +15,17 @@ body {
     background-color: #99C4C8;
     
 }
+.current {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
 
 #currentWeather {
     display: block;
     font-size: 20px;
     background-color: rgba(43, 99, 132, 0.656);
-    min-width: 225px;
+    min-width: 325px;
     width: 12%;
     margin-left: 20px;
     margin-right: 20px;
@@ -42,15 +47,14 @@ body {
     font-weight: bold;
     min-width: 250px;
     width: 20%;
-    position: relative;
+    
     margin-top: 20px;
     margin-right: 30px;
     margin-left: 20px;
     padding: 10px;
     border-radius: 5px;
     border: outset 5px;
-    top: 50%;
-    left: 20%;
+    
     background-color: rgba(43, 99, 132, 0.656);
     box-shadow: 5px 5px 5px rgba(211, 232, 255, 0.719);
 }

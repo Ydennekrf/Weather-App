@@ -121,10 +121,10 @@ searchBarEl.addEventListener('click' , function(event) {
 
 historyBtn.addEventListener('click', function(event) {
     event.preventDefault();
-    cityInput = event.target.value;
+    cityInput = event.target;
+    console.log(event.target);
     historyArr.push(cityInput);
     localStorage.setItem("cityName", JSON.stringify(historyArr));
-    $('input[name="searchBar"]').val('');
     printHistory(historyArr);
     geoApi(cityInput);
 });
