@@ -13,18 +13,18 @@
     <title>Weather</title>
 </head>
 <body>
+  <!-- header -->
   <div class="jumbotron header-margin divider bg-transparent">
     <h1 class="display-4 bg-transparent">3rd party API weather app.</h1>
     <p class="header-margin bg-transparent">Enter which city you would like the weather for below</p>
   </div>
+  <!-- search bar and submit button -->
   <form id="search-form">
   <input type="text" id="search" name="searchBar" class="searchBar form-input" placeholder="Search for Weather here.">
   <button class="btn btn-info " id="searchBar">Search</button>
   </form>
 
-  
-
-  
+<!-- current weather and recent history -->
   <h2 class="forecastHead">Current Weather</h2>
   <div class="container row current">
   <section class="search-history m-10">
@@ -43,7 +43,7 @@
      <section id="current-UV"></section>
    </section>
   </div>
-
+<!-- five day forecast -->
   <h2 class="forecastHead">5 Day Forecast</h2>
    <section id="fiveDayWeather" class="fiveDayContainer row">
        

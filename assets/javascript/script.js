@@ -139,8 +139,8 @@ historyBtn.addEventListener('click', function(event) {
     geoApi(cityInput);
 });
 //calls the geo api and init functions on load up
-// geoApi();
-// init();
+geoApi();
+init();
 
 
 
