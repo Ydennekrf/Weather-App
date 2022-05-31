@@ -1,3 +1,5 @@
+
+// global variables declared here//
 let cityInput = "toronto";
 let cityLat ;
 let cityLong ;
@@ -8,7 +10,6 @@ let currentState;
 let currentCountry;
 let historyArr = [];
 let historyBtn = document.getElementById('recentSearch');
-
 let now = moment().format('ddd MMM D YYYY');
 let currentCityEl = document.getElementById('currentName');
 let currentStateEl = document.getElementById('currentState');
@@ -43,6 +44,7 @@ geoApi = () => {
         })
 
 };
+// prints the recent searches on load up using local storage
 init = () => {
     let loadUp = JSON.parse(localStorage.getItem("cityName"));
     for (let i = 0; i < loadUp.length; i++) {
@@ -52,7 +54,7 @@ init = () => {
         historyBtn.appendChild(cityHistory);
     }
 }
-
+// api call to openweather oneCall 1.0
 getWeather = () => {
     let selectedCity = `http://api.openweathermap.org/data/2.5/onecall?lat=${cityLat}&lon=${cityLong}&units=metric&lang=${lang}&exclude=alerts,minutely&appid=${apiKey}`
 
@@ -65,6 +67,7 @@ getWeather = () => {
             loadCurrentWeather();
         })
 }
+// renders current weather for selected city on load in renders toronto
 loadCurrentWeather = () => {
     let currentData = JSON.parse(localStorage.getItem("cityData"));
     currentCityEl.textContent = currentName;
@@ -72,10 +75,12 @@ loadCurrentWeather = () => {
     currentCountryEl.textContent = currentCountry;
     currentDateEl.textContent = now;
     currentTempEl.textContent = `Temp: ${Math.floor(currentData.current.temp)} C`;
+    //variable used to finding the icon ID for weather conditions
     let icon = currentData.current.weather[0].icon
     currentConEl.innerHTML = `<img src=https://openweathermap.org/img/wn/${icon}@4x.png>`;
     currentWindEl.textContent = `Wind Speed: ${currentData.current.wind_speed} KM/H`;
     currentUVEl.textContent = `UV: ${currentData.current.uvi}`;
+    //handles the background color based on current UV rating
     if (currentData.current.uvi > 8) {
         currentUVEl.setAttribute("style", "background-color: red")
     } else if (currentData.current.uvi < 8 && currentData.current.uvi > 5) {
@@ -87,7 +92,7 @@ load5Day();
 };
 
 
-
+// loads up the 5 day forecast on default loads toronto
 load5Day = () => {
     let fiveDayData = JSON.parse(localStorage.getItem("cityData"))
    for (x = 0; x < 5 ; x++) {
@@ -99,7 +104,7 @@ load5Day = () => {
    document.getElementById(`${x}weather`).innerHTML = `<img src=https://openweathermap.org/img/wn/${icon}@4x.png>`;
    }
 };
-
+//updates the recent search history
 printHistory = (historyArr) => {
     historyBtn.innerHTML = '';
     for (let i = 0; i < historyArr.length; i++) {
@@ -121,7 +126,7 @@ searchBarEl.addEventListener('click' , function(event) {
     printHistory(historyArr);
     geoApi(cityInput);
 });
-
+// adds event listeners to the text in recent searches
 historyBtn.addEventListener('click', function(event) {
     event.preventDefault();
     cityInput = event.target.textContent;
@@ -133,7 +138,7 @@ historyBtn.addEventListener('click', function(event) {
     printHistory(historyArr);
     geoApi(cityInput);
 });
-
+//calls the geo api and init functions on load up
 geoApi();
 init();
 
