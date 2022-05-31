@@ -1,4 +1,4 @@
-let cityInput;
+let cityInput = "toronto";
 let cityLat ;
 let cityLong ;
 let lang = "en";
@@ -6,8 +6,8 @@ let apiKey = "a772a40f5da703f3736db6d33655ff2f"
 let currentCity;
 let currentState;
 let currentCountry;
-
-
+let historyArr = [];
+let historyBtn = document.getElementById('recentSearch');
 
 let now = moment().format('ddd MMM D YYYY');
 let currentCityEl = document.getElementById('currentName');
@@ -19,7 +19,7 @@ let currentConEl = document.getElementById('current-con');
 let currentWindEl = document.getElementById('current-wind');
 let currentUVEl = document.getElementById('current-UV');
 let searchBarEl = document.getElementById('searchBar');
-let historyEl = document.getElementById('city-history');
+
 
 
 
@@ -43,6 +43,9 @@ geoApi = () => {
         })
 
 };
+init = () => {
+
+}
 
 getWeather = () => {
     let selectedCity = `http://api.openweathermap.org/data/2.5/onecall?lat=${cityLat}&lon=${cityLong}&units=metric&lang=${lang}&exclude=alerts,minutely&appid=${apiKey}`
@@ -91,14 +94,16 @@ load5Day = () => {
    }
 };
 
-printHistory = () => {
-    let cityHistory = JSON.parse(localStorage.getItem("cityName"));
-    let liEl = document.createElement('li');
-    let historyBtn = document.createElement('button');
-    historyBtn.textContent = cityHistory;
-    historyEl.appendChild(liEl);
-    liEl.appendChild(historyBtn);
-    historyBtn.classList.add('his-city');
+printHistory = (historyArr) => {
+    console.log(historyArr)
+    for (let i = 0; i < historyArr.length; i++) {
+        let cityHistory = [];
+        cityHistory = document.createElement('li');
+        cityHistory.textContent = historyArr[i];
+        historyBtn.appendChild(cityHistory);
+        console.log(i);
+        console.log(cityHistory);
+    }
 
 }
 
@@ -106,21 +111,26 @@ printHistory = () => {
 
 searchBarEl.addEventListener('click' , function(event) {
     event.preventDefault();
-    console.log("hello");
     cityInput = $('input[name="searchBar"]').val();
-    console.log(cityInput);
-    localStorage.setItem("cityName" , JSON.stringify(cityInput));
+    historyArr.push(cityInput);
+    localStorage.setItem("cityName" , JSON.stringify(historyArr));
     $('input[name="searchBar"]').val('');
-    printHistory();
+    printHistory(historyArr);
     geoApi(cityInput);
 });
-historyEl.addEventListener('click', function(event) {
+
+historyBtn.addEventListener('click', function(event) {
     event.preventDefault();
     cityInput = event.target.value;
-    console.log(cityInput);
-    // geoApi(cityInput);
-})
+    historyArr.push(cityInput);
+    localStorage.setItem("cityName", JSON.stringify(historyArr));
+    $('input[name="searchBar"]').val('');
+    printHistory(historyArr);
+    geoApi(cityInput);
+});
 
+geoApi();
+init();
 
 
 
