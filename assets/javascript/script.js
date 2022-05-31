@@ -24,7 +24,7 @@ let searchBarEl = document.getElementById('searchBar');
 
 // fetches the Geo API info to get city coordinates
 geoApi = () => {
-    let getGeo = `http://api.openweathermap.org/geo/1.0/direct?q=${cityInput}&limit=5&appid=${apiKey}`
+    let getGeo = `https://api.openweathermap.org/geo/1.0/direct?q=${cityInput}&limit=5&appid=${apiKey}`
     console.log(cityInput)
     fetch(getGeo)
         .then(function (response) {
@@ -54,7 +54,7 @@ init = () => {
 }
 // api call to openweather oneCall 1.0
 getWeather = () => {
-    let selectedCity = `http://api.openweathermap.org/data/2.5/onecall?lat=${cityLat}&lon=${cityLong}&units=metric&lang=${lang}&exclude=alerts,minutely&appid=${apiKey}`
+    let selectedCity = `https://api.openweathermap.org/data/2.5/onecall?lat=${cityLat}&lon=${cityLong}&units=metric&lang=${lang}&exclude=alerts,minutely&appid=${apiKey}`
 
     fetch(selectedCity)
         .then(function (response) {
