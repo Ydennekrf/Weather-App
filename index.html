@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,7 +26,7 @@
   </form>
 
 <!-- current weather and recent history -->
-  <h2 class="forecastHead">Current Weather</h2>
+  <h2 class="forecastCur">Current Weather</h2>
   <div class="container row current">
   <section class="search-history m-10">
     <h3>Recent Searches</h3>
@@ -42,6 +43,7 @@
      <section id="current-wind"></section>
      <section id="current-UV"></section>
    </section>
+   <div id="map" class="map"></div>
   </div>
 <!-- five day forecast -->
   <h2 class="forecastHead">5 Day Forecast</h2>
@@ -84,7 +86,7 @@
     </section>
    </section>
 
-
+ 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>

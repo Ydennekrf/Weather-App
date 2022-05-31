@@ -1,8 +1,8 @@
 
 // global variables declared here//
 let cityInput = "toronto";
-let cityLat ;
-let cityLong ;
+let cityLat = 43.6535;
+let cityLong = -79.3839;
 let lang = "en";
 let apiKey = "a772a40f5da703f3736db6d33655ff2f"
 let currentCity;
@@ -22,9 +22,6 @@ let currentUVEl = document.getElementById('current-UV');
 let searchBarEl = document.getElementById('searchBar');
 
 
-
-
-
 // fetches the Geo API info to get city coordinates
 geoApi = () => {
     let getGeo = `http://api.openweathermap.org/geo/1.0/direct?q=${cityInput}&limit=5&appid=${apiKey}`
@@ -40,7 +37,7 @@ geoApi = () => {
             currentName = geoData[0].name
             currentState = geoData[0].state
             currentCountry = geoData[0].country
-            getWeather();          
+            getWeather();        
         })
 
 };
@@ -53,6 +50,7 @@ init = () => {
         cityHistory.textContent = loadUp[i];
         historyBtn.appendChild(cityHistory);
     }
+     
 }
 // api call to openweather oneCall 1.0
 getWeather = () => {
@@ -139,8 +137,9 @@ historyBtn.addEventListener('click', function(event) {
     geoApi(cityInput);
 });
 //calls the geo api and init functions on load up
-geoApi();
 init();
+geoApi();
+
 
 
 
