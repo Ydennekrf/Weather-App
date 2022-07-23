@@ -25,4 +25,4 @@ open weather API ( one call 1.0 and geo coding)
 
 ## Installation
 
-  The website can be viewed through GitHub pages [here](https://ydennekrf.github.io/Mighty-Zoo/)
+  The website can be viewed through GitHub pages [here](https://ydennekrf.github.io/Weather-App/)
